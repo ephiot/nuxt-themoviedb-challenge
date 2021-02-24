@@ -1,5 +1,6 @@
 {
-  "name": "abler-test",
+  "name": "nuxt-themoviedb-challenge",
+  "author": "Mauricio Queiroz <ephiot@gmail.com>",
   "version": "1.0.0",
   "private": true,
   "scripts": {
