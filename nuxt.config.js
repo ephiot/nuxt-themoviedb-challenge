@@ -35,11 +35,39 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/universal-storage'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    // baseURL: 'https://api.themoviedb.org'
+  },
+
+  // Storage settings (@nuxtjs/universal-storage)
+  storage:  {
+    vuex: {
+      namespace: 'storage'
+    },
+    cookie: {
+      prefix: '',
+      options: {
+        path: '/'
+      }
+    },
+    localStorage: {
+      prefix: ''
+    },
+    ignoreExceptions: false,
+    initialState: { user: false }
+  },
+
+  // Env
+  env: {
+    apiHost: process.env.apiHost || 'https://40687aab3ac8.ngrok.io',
+    apiKEY: process.env.apiKEY || 'f4734793cc9b5cfc9ea6dc84051503f5',
+    baseURL: process.env.baseURL || 'https://api.themoviedb.org/3'
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

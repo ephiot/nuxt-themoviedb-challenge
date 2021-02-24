@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/universal-storage": "^0.5.7",
     "core-js": "^3.8.3",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.14.12",
+    "vue-styled-components": "^1.6.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

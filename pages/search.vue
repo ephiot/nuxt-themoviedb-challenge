@@ -2,7 +2,14 @@
   <Row justify-content="flex-start">
     <movie-modal ref="modal" :movie="currentMovie" :poster="currentPoster" :backdrop="currentBackdrop" />
     <Sidebar flex-basis="20%">
-      <TextLine>Filmes Populares</TextLine>
+      <TextLine>Busca de Filmes</TextLine>
+      <MovieSearchBlock>
+        <label for="search_field">Por nome:</label>
+        <Input id="search_field" v-model="query" type="text" />
+        <Button @click="search">
+          Buscar
+        </Button>
+      </MovieSearchBlock>
     </Sidebar>
     <Sidebar flex-basis="80%">
       <MovieList>
@@ -19,17 +26,22 @@
 
 <script>
 import Button from '@/components/elements/Button'
+import Input from '@/components/elements/Input'
 import MovieList from '@/components/elements/MovieList'
+import MovieSearchBlock from '@/components/elements/MovieSearchBlock'
 import Row from '@/components/elements/Row'
 import Sidebar from '@/components/elements/Sidebar'
 import TextLine from '@/components/elements/TextLine'
 
 import PopularMovies from '@/services/PopularMovies'
+import SearchMovies from '@/services/SearchMovies'
 
 export default {
   components: {
     Button,
+    Input,
     MovieList,
+    MovieSearchBlock,
     Row,
     Sidebar,
     TextLine
@@ -38,6 +50,7 @@ export default {
   middleware: 'authenticated',
   data: () => {
     return {
+      query: '',
       list: [],
       page: 1,
       lastPage: 1,
@@ -47,12 +60,14 @@ export default {
       currentBackdrop: ''
     }
   },
-  created () {
-    this.paginate()
-  },
   methods: {
+    search () {
+      this.page = 1
+      this.list = []
+      this.paginate()
+    },
     paginate () {
-      PopularMovies.getList(this.page, this.region).then((response) => {
+      SearchMovies.search(this.query, this.page).then((response) => {
         this.list = this.list.concat(response.results)
         this.lastPage = response.total_pages
       })
