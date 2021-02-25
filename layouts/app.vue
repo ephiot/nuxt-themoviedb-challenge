@@ -14,7 +14,12 @@
             </NuxtLink>
           </li>
           <li>
-            <a @click="logout">Sair</a>
+            <NuxtLink to="/list">
+              Listas de Filmes
+            </NuxtLink>
+          </li>
+          <li>
+            <a @click="logoutAndRedirect">Sair</a>
           </li>
         </ul>
       </Content>
@@ -34,8 +39,6 @@ import Content from '@/components/elements/Content'
 import Footer from '@/components/elements/Footer'
 import Navbar from '@/components/elements/Navbar'
 
-import { mapActions } from 'vuex'
-
 export default {
   components: {
     Container,
@@ -43,10 +46,13 @@ export default {
     Footer,
     Navbar
   },
+  middleware: 'authenticated',
   methods: {
-    ...mapActions({
-      logout: 'auth/logout'
-    })
+    logoutAndRedirect () {
+      this.$storage.removeUniversal('requestToken')
+      this.$storage.removeUniversal('sessionId')
+      this.$router.push({ path: '/login' })
+    }
   }
 }
 </script>

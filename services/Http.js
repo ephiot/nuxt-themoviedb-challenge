@@ -3,7 +3,8 @@ import axios from 'axios'
 const config = {
   headers: {
     'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'text/plain'
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
   }
 }
 

@@ -36,7 +36,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/universal-storage'
+    '@nuxtjs/universal-storage',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -59,12 +59,15 @@ export default {
       prefix: ''
     },
     ignoreExceptions: false,
-    initialState: { user: false }
+    initialState: {
+      requestToken: false,
+      sessionId: false
+    }
   },
 
   // Env
   env: {
-    apiHost: process.env.apiHost || 'https://40687aab3ac8.ngrok.io',
+    apiHost: process.env.apiHost || 'https://c0d489745752.ngrok.io',
     apiKEY: process.env.apiKEY || 'f4734793cc9b5cfc9ea6dc84051503f5',
     baseURL: process.env.baseURL || 'https://api.themoviedb.org/3'
   },

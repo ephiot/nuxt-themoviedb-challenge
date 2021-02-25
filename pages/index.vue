@@ -35,7 +35,6 @@ export default {
     TextLine
   },
   layout: 'app',
-  middleware: 'authenticated',
   data: () => {
     return {
       list: [],

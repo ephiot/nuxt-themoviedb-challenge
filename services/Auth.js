@@ -15,12 +15,16 @@ class Auth {
   }
 
   getSessionId (requestToken) {
-    return Http.post(API_SESSION_URL, { request_token: requestToken }).then((response) => {
+    return Http.get(API_SESSION_URL + `&request_token=${requestToken}`).then((response) => {
       if (response.data.session_id) {
         return response.data.session_id
       }
       return response.data
     })
+  }
+
+  isAuthenticated (storage) {
+    return (storage.getUniversal('requestToken') && storage.getUniversal('sessionId'))
   }
 }
 
